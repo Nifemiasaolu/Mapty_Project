@@ -29,14 +29,26 @@ if (navigator.geolocation)
         attribution: '© OpenStreetMap',
       }).addTo(map);
 
-      L.marker(coords)
-        .addTo(map)
-        .bindPopup('<b>Hello world!</b><br>I am a popup.')
-        .openPopup();
+      map.on('click', function (mapEvent) {
+        console.log(mapEvent);
+        const { lat, lng } = mapEvent.latlng;
+
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(L.popup({
+            maxWidth: 250,
+            minWidth: 100,
+            autoClose: false,
+            closeOnClick: false,
+            className: 'running-popup'
+          }))
+          .setPopupContent('Workout')
+          .openPopup();
+      });
     },
     function () {
       alert('Could not get your position');
     }
   );
 
-  console.log(firstName);
+console.log(firstName);
