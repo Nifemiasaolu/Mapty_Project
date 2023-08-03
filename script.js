@@ -59,7 +59,7 @@ class Cycling extends Workout {
 // console.log(run1, cycle1);
 
 
-//////////////////////////////////////////
+/////////////////////////////////////////
 //APPLICATION ARCHITECTURE
 // Implementing App class
 class App {
