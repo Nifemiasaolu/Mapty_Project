@@ -13,7 +13,54 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 /////
 
+class Workout {
+  date = new Date();
+  id = (Date.now() + '').slice(-10)
 
+  constructor(distance, coords, duration){
+    this.distance = distance; // in km
+    this.coords = coords; // [lat, lng]
+    this.duration = duration; // in min
+  }
+}
+
+// Child(s) of Workout Class 
+class Running extends Workout {
+  constructor(coords, distance, duration, cadence) {
+    super(distance, coords, duration);
+    this.cadence = cadence;
+    this.calcPace();
+  }
+
+  // Calculate the Pace 
+  calcPace() {
+    //in min/km
+    this.pace = this.duration / this.distance;
+    return this.pace;
+  } 
+}
+
+class Cycling extends Workout {
+  constructor(coords, distance, duration, elevationGain) {
+    super(distance, coords, duration);
+    this.elevationGain = elevationGain;
+    this.calcSpeed();
+  }
+
+  calcSpeed(){
+    //km/hr
+    this.speed = this.distance / (this.duration / 60);
+    return this.speed;
+  }
+}
+
+// const run1 = new Running ([24,-37], 54, 35, 263);
+// const cycle1 = new Cycling ([24,-37], 44, 76, 754);
+// console.log(run1, cycle1);
+
+
+/////////////////////////////////////////
+//APPLICATION ARCHITECTURE
 // Implementing App class
 class App {
   // Declaring the global variables in a class
